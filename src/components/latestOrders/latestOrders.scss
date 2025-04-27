@@ -1,0 +1,167 @@
+@import "../../styles/variables.scss";
+@import "../../styles/responsive.scss";
+
+.latestOrders {
+  background-color: var(--bgSoft);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: var(--shadow);
+
+  &.loading {
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    
+    p {
+      margin-top: 15px;
+      color: var(--textSoft);
+    }
+  }
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    h2 {
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--textSoft);
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--textLink);
+      font-size: 14px;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .dataGrid {
+    border: none;
+
+    .MuiDataGrid-cell {
+      border: none;
+      padding: 10px;
+    }
+
+    .MuiDataGrid-columnHeaders {
+      background-color: #f7f7f7;
+      border-bottom: 1px solid #eaeaea;
+    }
+  }
+
+  .status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    
+    &.delivered {
+      background-color: rgba(0, 128, 0, 0.1);
+      color: green;
+    }
+    
+    &.pending {
+      background-color: rgba(255, 165, 0, 0.1);
+      color: orange;
+    }
+    
+    &.shipped {
+      background-color: rgba(0, 0, 255, 0.1);
+      color: blue;
+    }
+    
+    &.cancelled {
+      background-color: rgba(255, 0, 0, 0.1);
+      color: red;
+    }
+  }
+
+  .ordersTable {
+    background-color: var(--bgSoft);
+    border: none;
+    
+    .MuiDataGrid-columnHeaders {
+      background-color: rgba(128, 128, 128, 0.1);
+      color: var(--textSoft);
+      font-weight: 600;
+      border-bottom: none;
+    }
+    
+    .MuiDataGrid-cell {
+      border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+    }
+    
+    .viewButton {
+      padding: 5px 10px;
+      background-color: rgba(0, 0, 255, 0.1);
+      color: blue;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      
+      &:hover {
+        background-color: rgba(0, 0, 255, 0.2);
+      }
+    }
+  }
+
+  .viewAll {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+
+    button {
+      background-color: transparent;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: var(--primary);
+        color: white;
+      }
+    }
+  }
+}
+
+.dark {
+  .latestOrders {
+    background-color: var(--bgSoft);
+
+    th {
+      color: var(--text);
+    }
+
+    .status {
+      &.success {
+        background-color: rgba(0, 180, 0, 0.2);
+      }
+
+      &.warning {
+        background-color: rgba(255, 180, 0, 0.2);
+      }
+
+      &.info {
+        background-color: rgba(0, 120, 255, 0.2);
+      }
+
+      &.danger {
+        background-color: rgba(255, 0, 0, 0.2);
+      }
+    }
+  }
+} 

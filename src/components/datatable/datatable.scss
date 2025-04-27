@@ -1,0 +1,532 @@
+.datatable {
+  height: 700px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin: 10px;
+  
+  .datatableTitle{
+    width: 100%;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+
+    .link{
+      text-decoration: none;
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+      background-color: #6f42c1;
+      padding: 8px 15px;
+      border-radius: 5px;
+      transition: all 0.3s;
+      
+      &:hover {
+        background-color: #5e35b1;
+      }
+    }
+  }
+
+  // Remove borders from DataGrid
+  .datagrid {
+    border: none !important;
+    height: calc(100% - 10px) !important;
+    
+    .MuiDataGrid-columnsContainer,
+    .MuiDataGrid-cell,
+    .MuiDataGrid-columnHeaders,
+    .MuiDataGrid-columnHeader,
+    .MuiDataGrid-columnSeparator {
+      border: none !important;
+    }
+
+    .MuiDataGrid-cell {
+      border-bottom: none !important;
+    }
+
+    .MuiDataGrid-columnHeaders {
+      border-bottom: none !important;
+    }
+
+    .MuiDataGrid-iconSeparator {
+      display: none !important;
+    }
+  }
+
+  // Update copyable ID styling to match Change Requests
+  .copyableId {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    position: relative;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: all 0.2s;
+    
+    &:hover {
+      background: linear-gradient(135deg, rgba(var(--primary-rgb, 111, 66, 193), 0.05), rgba(var(--primary-rgb, 111, 66, 193), 0.1));
+      
+      .copyIcon {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+      
+      .orderId {
+        color: var(--primary);
+      }
+    }
+    
+    &.copied {
+      background: linear-gradient(135deg, rgba(46, 204, 113, 0.05), rgba(46, 204, 113, 0.1));
+      border: 1px solid rgba(46, 204, 113, 0.1);
+    }
+    
+    .orderId {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--text);
+      transition: color 0.2s;
+    }
+    
+    .copyIcon {
+      font-size: 0.8rem;
+      color: var(--primary);
+      opacity: 0.5;
+      transition: all 0.2s;
+    }
+  }
+
+  .inlineCopyIndicator {
+    position: absolute;
+    right: -10px;
+    top: -16px;
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.8), rgba(46, 204, 113, 0.9));
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    animation: fadeInUp 0.2s ease-out forwards;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+    z-index: 5;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .cellWithImg {
+    display: flex;
+    align-items: center;
+
+    .cellImg {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+  }
+
+  .cellWithStatus {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-transform: capitalize;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid transparent;
+    
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    &.active {
+      background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(76, 175, 80, 0.2));
+      color: #4caf50;
+      border-color: rgba(76, 175, 80, 0.1);
+    }
+    
+    &.inactive {
+      background: linear-gradient(135deg, rgba(244, 67, 54, 0.1), rgba(244, 67, 54, 0.2));
+      color: #f44336;
+      border-color: rgba(244, 67, 54, 0.1);
+    }
+    
+    &.completed {
+      background: linear-gradient(135deg, rgba(54, 179, 126, 0.1), rgba(54, 179, 126, 0.2));
+      color: #36B37E;
+      border-color: rgba(54, 179, 126, 0.1);
+    }
+    
+    &.in_progress {
+      background: linear-gradient(135deg, rgba(0, 191, 255, 0.1), rgba(0, 191, 255, 0.2));
+      color: #00BFFF;
+      border-color: rgba(0, 191, 255, 0.1);
+    }
+    
+    &.pending {
+      background: linear-gradient(135deg, rgba(255, 171, 0, 0.1), rgba(255, 171, 0, 0.2));
+      color: #FFAB00;
+      border-color: rgba(255, 171, 0, 0.1);
+    }
+    
+    &.cancelled {
+      background: linear-gradient(135deg, rgba(255, 86, 48, 0.1), rgba(255, 86, 48, 0.2));
+      color: #FF5630;
+      border-color: rgba(255, 86, 48, 0.1);
+    }
+  }
+  
+  .cellWithEmergency {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid transparent;
+    
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    }
+    
+    &.yes {
+      background: linear-gradient(135deg, rgba(244, 67, 54, 0.1), rgba(244, 67, 54, 0.2));
+      color: #f44336;
+      border-color: rgba(244, 67, 54, 0.1);
+    }
+    
+    &.no {
+      background: linear-gradient(135deg, rgba(158, 158, 158, 0.1), rgba(158, 158, 158, 0.2));
+      color: #9e9e9e;
+      border-color: rgba(158, 158, 158, 0.1);
+    }
+  }
+  
+  .cellWithFeature {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid transparent;
+    
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    }
+    
+    &.yes {
+      background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), rgba(33, 150, 243, 0.2));
+      color: #2196f3;
+      border-color: rgba(33, 150, 243, 0.1);
+    }
+    
+    &.no {
+      background: linear-gradient(135deg, rgba(158, 158, 158, 0.1), rgba(158, 158, 158, 0.2));
+      color: #9e9e9e;
+      border-color: rgba(158, 158, 158, 0.1);
+    }
+  }
+  
+  .cellWithRating {
+    font-weight: 500;
+    color: #ff9800;
+    display: flex;
+    align-items: center;
+  }
+  
+  .cellWithPrice {
+    font-weight: 500;
+    color: #6f42c1;
+  }
+
+  .cellAction {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    .viewButton {
+      padding: 8px 18px;
+      border-radius: 10px;
+      color: var(--primary);
+      background: linear-gradient(135deg, rgba(var(--primary-rgb, 111, 66, 193), 0.1), rgba(var(--primary-rgb, 111, 66, 193), 0.2));
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: none;
+      
+      &:hover {
+        background: linear-gradient(135deg, rgba(var(--primary-rgb, 111, 66, 193), 0.9), rgba(var(--primary-rgb, 111, 66, 193), 1));
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(var(--primary-rgb, 111, 66, 193), 0.2);
+      }
+      
+      &:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 6px rgba(var(--primary-rgb, 111, 66, 193), 0.15);
+      }
+    }
+    
+    .deleteButton {
+      padding: 8px 18px;
+      border-radius: 10px;
+      color: #FF5630;
+      background: linear-gradient(135deg, rgba(255, 86, 48, 0.1), rgba(255, 86, 48, 0.2));
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: none;
+      
+      &:hover {
+        background: linear-gradient(135deg, rgba(255, 86, 48, 0.9), rgba(255, 86, 48, 1));
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 86, 48, 0.2);
+      }
+      
+      &:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 6px rgba(255, 86, 48, 0.15);
+      }
+    }
+  }
+}
+
+// Status-based row styling  
+.row-status-completed {
+  background-color: rgba(54, 179, 126, 0.03) !important;
+}
+
+.row-status-in_progress {
+  background-color: rgba(0, 191, 255, 0.03) !important;
+}
+
+.row-status-pending {
+  background-color: rgba(255, 171, 0, 0.03) !important;
+}
+
+.row-status-cancelled {
+  background-color: rgba(255, 86, 48, 0.03) !important;
+}
+
+// Dark mode styles
+.app.dark .datatable {
+  background-color: #141b2d;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  
+  .datatableTitle {
+    color: #f8f9fa;
+  }
+  
+  .MuiDataGrid-root {
+    color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.1);
+    background-color: #141b2d;
+    border: none !important;
+  }
+  
+  .MuiDataGrid-columnHeaders {
+    background-color: #1e272e;
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: none !important;
+  }
+  
+  .MuiDataGrid-cell {
+    border-bottom-color: rgba(255, 255, 255, 0) !important;
+    border: none !important;
+  }
+  
+  .MuiDataGrid-footerContainer {
+    background-color: #1e272e;
+    color: rgba(255, 255, 255, 0.8);
+    border-top: none !important;
+  }
+
+  .MuiDataGrid-virtualScroller {
+    background-color: #141b2d;
+  }
+  
+  .MuiTablePagination-root {
+    color: rgba(255, 255, 255, 0.9);
+    
+    .MuiTablePagination-selectLabel,
+    .MuiTablePagination-displayedRows {
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .MuiTablePagination-select {
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .MuiIconButton-root {
+      color: rgba(255, 255, 255, 0.7);
+      
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+      
+      &.Mui-disabled {
+        color: rgba(255, 255, 255, 0.3);
+      }
+    }
+  }
+  
+  .MuiCheckbox-root {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .MuiSvgIcon-root {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  // Additional selectors to ensure all internal elements have the right background
+  .MuiDataGrid-overlay {
+    background-color: #141b2d;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  
+  .MuiDataGrid-main {
+    background-color: #141b2d;
+  }
+  
+  .MuiDataGrid-window {
+    background-color: #141b2d;
+  }
+  
+  .MuiDataGrid-viewport {
+    background-color: #141b2d;
+  }
+  
+  .MuiDataGrid-row {
+    background-color: #141b2d;
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.04) !important;
+    }
+    
+    &.Mui-selected {
+      background-color: rgba(89, 165, 232, 0.08) !important;
+      
+      &:hover {
+        background-color: rgba(89, 165, 232, 0.12) !important;
+      }
+    }
+  }
+  
+  .cellWithStatus {
+    &.active {
+      background: linear-gradient(135deg, rgba(76, 175, 80, 0.15), rgba(76, 175, 80, 0.25));
+      border-color: rgba(76, 175, 80, 0.2);
+    }
+    
+    &.inactive {
+      background: linear-gradient(135deg, rgba(244, 67, 54, 0.15), rgba(244, 67, 54, 0.25));
+      border-color: rgba(244, 67, 54, 0.2);
+    }
+    
+    &.completed {
+      background: linear-gradient(135deg, rgba(54, 179, 126, 0.15), rgba(54, 179, 126, 0.25));
+      border-color: rgba(54, 179, 126, 0.2);
+    }
+    
+    &.in_progress {
+      background: linear-gradient(135deg, rgba(0, 191, 255, 0.15), rgba(0, 191, 255, 0.25));
+      border-color: rgba(0, 191, 255, 0.2);
+    }
+    
+    &.pending {
+      background: linear-gradient(135deg, rgba(255, 171, 0, 0.15), rgba(255, 171, 0, 0.25));
+      border-color: rgba(255, 171, 0, 0.2);
+    }
+    
+    &.cancelled {
+      background: linear-gradient(135deg, rgba(255, 86, 48, 0.15), rgba(255, 86, 48, 0.25));
+      border-color: rgba(255, 86, 48, 0.2);
+    }
+  }
+  
+  .cellWithEmergency, .cellWithFeature {
+    &.yes {
+      background: linear-gradient(135deg, rgba(33, 150, 243, 0.15), rgba(33, 150, 243, 0.25));
+      border-color: rgba(33, 150, 243, 0.2);
+    }
+    
+    &.no {
+      background: linear-gradient(135deg, rgba(158, 158, 158, 0.15), rgba(158, 158, 158, 0.25));
+      border-color: rgba(158, 158, 158, 0.2);
+    }
+  }
+  
+  .cellAction {
+    .viewButton {
+      background: linear-gradient(135deg, rgba(var(--primary-rgb, 111, 66, 193), 0.15), rgba(var(--primary-rgb, 111, 66, 193), 0.25));
+      
+      &:hover {
+        box-shadow: 0 4px 12px rgba(var(--primary-rgb, 111, 66, 193), 0.3);
+      }
+    }
+    
+    .deleteButton {
+      background: linear-gradient(135deg, rgba(255, 86, 48, 0.15), rgba(255, 86, 48, 0.25));
+      
+      &:hover {
+        box-shadow: 0 4px 12px rgba(255, 86, 48, 0.3);
+      }
+    }
+  }
+
+  // Updated dark mode styles for copyable ID
+  .copyableId {
+    .orderId {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    &:hover {
+      background: linear-gradient(135deg, rgba(var(--primary-rgb, 111, 66, 193), 0.15), rgba(var(--primary-rgb, 111, 66, 193), 0.2));
+      
+      .orderId {
+        color: var(--primary);
+      }
+    }
+  }
+  
+  .inlineCopyIndicator {
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.9), rgba(46, 204, 113, 1));
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  }
+}

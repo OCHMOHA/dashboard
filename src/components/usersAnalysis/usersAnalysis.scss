@@ -1,0 +1,172 @@
+@import "../../styles/variables.scss";
+@import "../../styles/responsive.scss";
+
+.usersAnalysis {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: var(--bg);
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    
+    h2 {
+      font-size: 20px;
+      color: var(--textSoft);
+    }
+
+    .range {
+      display: flex;
+      gap: 10px;
+
+      button {
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        background-color: var(--bgSoft);
+        color: var(--textSoft);
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &.active, &:hover {
+          background-color: var(--primary);
+          color: white;
+        }
+      }
+    }
+  }
+
+  .chartInfo {
+    display: flex;
+    gap: 20px;
+    
+    @include lg {
+      flex-direction: column;
+    }
+
+    .chart {
+      flex: 3;
+      height: 300px;
+      background-color: var(--bgSoft);
+      border-radius: 10px;
+      padding: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .stats {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+
+      @include lg {
+        flex-direction: row;
+        gap: 20px;
+      }
+
+      @include md {
+        flex-direction: column;
+      }
+      
+      .item {
+        padding: 20px;
+        border-radius: 10px;
+        background-color: var(--bgSoft);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        transition: all 0.3s ease;
+
+        @include lg {
+          width: 100%;
+        }
+
+        .itemTitle {
+          font-size: 14px;
+          color: var(--textSoft);
+        }
+
+        .itemValue {
+          font-size: 24px;
+          font-weight: 600;
+          color: var(--text);
+        }
+
+        .itemPercentage {
+          font-size: 14px;
+          font-weight: 500;
+          
+          &.positive {
+            color: $green;
+          }
+          
+          &.negative {
+            color: $red;
+          }
+        }
+
+        .itemDesc {
+          font-size: 12px;
+          color: var(--textSoft);
+        }
+      }
+    }
+  }
+
+  .custom-tooltip {
+    background-color: var(--bgSoft);
+    border: 1px solid var(--border);
+    padding: 10px;
+    border-radius: 5px;
+    color: var(--text);
+    
+    .label {
+      margin-bottom: 5px;
+      font-weight: 600;
+      padding-bottom: 5px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .entry {
+      display: flex;
+      align-items: center;
+      margin: 5px 0;
+      
+      .color-indicator {
+        width: 12px;
+        height: 12px;
+        margin-right: 8px;
+        border-radius: 2px;
+      }
+      
+      .label {
+        border: none;
+        padding: 0;
+        margin: 0;
+        font-weight: normal;
+        margin-right: 5px;
+      }
+      
+      .value {
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.dark {
+  .usersAnalysis {
+    .recharts-cartesian-axis-tick-value {
+      fill: var(--textSoft);
+    }
+    
+    .recharts-tooltip-cursor {
+      fill: rgba(255, 255, 255, 0.1);
+    }
+  }
+} 

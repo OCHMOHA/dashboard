@@ -1,0 +1,274 @@
+.app.dark {
+  background-color: #141b2d;
+  color: #f8f9fa;
+  transition: all 0.3s ease;
+
+  .chartGrid {
+    stroke: rgba(255, 255, 255, 0.1);
+  }
+
+  .table {
+    background-color: #1e272e;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    .tableCell {
+      color: #ccc;
+    }
+  }
+
+  .navbar {
+    color: #f8f9fa;
+    border-color: #333;
+    background-color: #1e272e;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+
+    .search {
+      border-color: #444;
+      background-color: #293845;
+      border-radius: 20px;
+      
+      input {
+        color: #f8f9fa;
+      }
+    }
+  }
+
+  .sidebar {
+    background-color: #1e272e;
+    border-color: #333;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+
+    .top {
+      .logo {
+        color: #a78bfa;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+    }
+    
+    hr {
+      border-color: #444;
+    }
+
+    ul {
+      li {
+        margin: 5px 0;
+        border-radius: 8px;
+        
+        &:hover {
+          background-color: #293845;
+          transform: translateY(-2px);
+          transition: all 0.2s;
+        }
+
+        .icon {
+          color: #a78bfa;
+        }
+      }
+      
+      .title {
+        color: #888;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+    }
+  }
+
+  .datatable {
+    .datagrid {
+      color: #f8f9fa;
+      border: none;
+      background-color: #1e272e;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+      .viewButton {
+        color: #59a5e8;
+        border: 1px solid rgba(89, 165, 232, 0.3);
+        border-radius: 4px;
+        
+        &:hover {
+          background-color: rgba(89, 165, 232, 0.1);
+        }
+      }
+      
+      .deleteButton {
+        color: #ff6b6b;
+        border: 1px solid rgba(255, 107, 107, 0.3);
+        border-radius: 4px;
+        
+        &:hover {
+          background-color: rgba(255, 107, 107, 0.1);
+        }
+      }
+      
+      .cellWithStatus {
+        padding: 4px 8px;
+        border-radius: 4px;
+        
+        &.active {
+          color: #4ade80;
+          background-color: rgba(74, 222, 128, 0.1);
+        }
+        
+        &.pending {
+          color: #ff9800;
+          background-color: rgba(255, 152, 0, 0.1);
+        }
+        
+        &.passive {
+          color: #f44336;
+          background-color: rgba(244, 67, 54, 0.1);
+        }
+      }
+    }
+  }
+
+  input {
+    background-color: #293845;
+    color: #f8f9fa;
+    border: 1px solid #444;
+    border-radius: 6px;
+    
+    &:focus {
+      border-color: #a78bfa;
+      outline: none;
+    }
+  }
+  
+  .widgets, .charts {
+    gap: 20px;
+  }
+  
+  .widget {
+    background-color: #1e272e;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s;
+    
+    &:hover {
+      transform: translateY(-5px);
+    }
+    
+    .left {
+      .title {
+        color: #ccc;
+        font-weight: 600;
+      }
+      
+      .counter {
+        font-size: 26px;
+        font-weight: 700;
+        color: #f8f9fa;
+      }
+      
+      .link {
+        color: #59a5e8;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  
+  button {
+    background-color: #59a5e8;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    
+    &:hover {
+      background-color: #4a94d6;
+    }
+    
+    &:disabled {
+      background-color: #3a7bb8;
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+
+  // Additional components
+  .welcomeBanner {
+    background-color: #1e272e;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .featured {
+    background-color: #1e272e;
+    
+    .top {
+      .title {
+        color: #ccc;
+      }
+    }
+    
+    .bottom {
+      .featuredChart {
+        .CircularProgressbar-text,
+        .CircularProgressbar-path {
+          stroke: #59a5e8;
+        }
+      }
+      
+      .title {
+        color: #ccc;
+      }
+      
+      .amount {
+        color: #f8f9fa;
+      }
+      
+      .desc {
+        color: #ccc;
+      }
+    }
+  }
+  
+  .chart {
+    background-color: #1e272e;
+    
+    .title {
+      color: #ccc;
+    }
+    
+    .chartGrid {
+      stroke: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+// Add light theme enhancements
+.app {
+  transition: all 0.3s ease;
+  
+  .widget, .featured, .chart {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    transition: transform 0.3s;
+    
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+  
+  .listContainer {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    
+    .listTitle {
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+  }
+}

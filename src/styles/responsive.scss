@@ -1,0 +1,43 @@
+// Responsive mixins
+@mixin sm {
+  @media screen and (max-width: 576px) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media screen and (max-width: 992px) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media screen and (max-width: 1200px) {
+    @content;
+  }
+}
+
+// Device specific mixins
+@mixin mobile {
+  @media screen and (max-width: 576px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: 992px) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media screen and (max-width: 1200px) {
+    @content;
+  }
+} 

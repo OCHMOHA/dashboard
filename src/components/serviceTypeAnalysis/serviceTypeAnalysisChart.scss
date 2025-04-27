@@ -1,0 +1,150 @@
+@import "../../styles/variables.scss";
+@import "../../styles/responsive.scss";
+
+.serviceTypeAnalysisChart {
+  flex: 1;
+  background-color: var(--bg);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  
+  &.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    color: var(--textSoft);
+    font-style: italic;
+  }
+  
+  .title {
+    margin-bottom: 15px;
+    
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+    
+    p {
+      font-size: 14px;
+      color: var(--textSoft);
+      margin: 0;
+    }
+  }
+  
+  .chartContainer {
+    margin-bottom: 20px;
+    background-color: var(--bgSoft);
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    
+    // Ensure legend text is visible
+    .recharts-legend-item-text {
+      color: var(--text);
+    }
+  }
+  
+  .serviceSummary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    
+    .serviceItem {
+      flex: 1 0 calc(50% - 10px);
+      min-width: 200px;
+      background-color: var(--bgSoft);
+      padding: 15px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      
+      .serviceInfo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        
+        .colorBox {
+          width: 16px;
+          height: 16px;
+          border-radius: 4px;
+        }
+        
+        .name {
+          font-weight: 500;
+          color: var(--text);
+        }
+      }
+      
+      .stats {
+        text-align: right;
+        
+        .value {
+          font-weight: 600;
+          font-size: 18px;
+          color: var(--text);
+        }
+        
+        .percent {
+          font-size: 14px;
+          color: var(--textSoft);
+        }
+      }
+    }
+  }
+  
+  .chartInfo {
+    background-color: var(--bgSoft);
+    padding: 12px;
+    border-radius: 8px;
+    
+    p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--textSoft);
+    }
+  }
+}
+
+// Dark mode overrides
+.dark {
+  .serviceTypeAnalysisChart {
+    .chartContainer {
+      background-color: var(--bgSoft);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      
+      .recharts-text {
+        fill: var(--textSoft);
+      }
+    }
+    
+    .serviceSummary {
+      .serviceItem {
+        background-color: var(--bgSoft);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        
+        &:hover {
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+          background-color: var(--hover-bg);
+        }
+      }
+    }
+    
+    .chartInfo {
+      background-color: var(--bgSoft);
+    }
+  }
+} 

@@ -1,0 +1,160 @@
+@import "../../styles/variables.scss";
+@import "../../styles/responsive.scss";
+
+.orderStatusChart {
+  background-color: var(--bgSoft);
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+
+  &:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  &.loading {
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+  }
+
+  .title {
+    h2 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: var(--textSoft);
+    }
+    p {
+      font-size: 14px;
+      color: var(--textSoft);
+      margin: 0;
+    }
+  }
+
+  .statsOverview {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+
+    @include lg {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include sm {
+      grid-template-columns: 1fr;
+    }
+
+    .statItem {
+      background-color: var(--bg);
+      padding: 15px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-left: 4px solid transparent;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .label {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--textSoft);
+      }
+
+      .value {
+        font-size: 28px;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .percent {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--textSoft);
+      }
+
+      &.completed {
+        border-left-color: #36B37E;
+      }
+
+      &.processing {
+        border-left-color: #00BFFF;
+      }
+
+      &.pending {
+        border-left-color: #FFAB00;
+      }
+
+      &.cancelled {
+        border-left-color: #FF5630;
+      }
+    }
+  }
+
+  .chartContainer {
+    height: 300px;
+    width: 100%;
+    background-color: var(--bg);
+    border-radius: 8px;
+    padding: 15px;
+  }
+
+  .chartInfo {
+    text-align: center;
+    font-size: 12px;
+    color: var(--textSoft);
+  }
+}
+
+// Dark mode overrides
+.dark {
+  .orderStatusChart {
+    background-color: var(--bgSoft);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    .statsOverview {
+      .statItem {
+        background-color: var(--bg);
+        
+        &.completed {
+          .value, .label {
+            color: #85E0B7;
+          }
+        }
+        
+        &.processing {
+          .value, .label {
+            color: #7DD3F7;
+          }
+        }
+        
+        &.pending {
+          .value, .label {
+            color: #FFD580;
+          }
+        }
+        
+        &.cancelled {
+          .value, .label {
+            color: #FF8F80;
+          }
+        }
+      }
+    }
+
+    .chartContainer {
+      background-color: var(--bg);
+    }
+  }
+} 

@@ -1,0 +1,118 @@
+.home {
+  display: flex;
+
+  .homeContainer {
+    flex: 6;
+
+    .welcomeBanner {
+      background: linear-gradient(to right, #6f42c1, #5e35b1);
+      border-radius: 12px;
+      margin: 20px;
+      padding: 25px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 10px 25px rgba(111, 66, 193, 0.2);
+      position: relative;
+      overflow: hidden;
+      
+      &::before {
+        content: "";
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        z-index: 0;
+      }
+      
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -80px;
+        left: 30%;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        z-index: 0;
+      }
+      
+      .welcomeContent {
+        z-index: 1;
+        animation: fadeIn 0.8s ease-in-out;
+        
+        h1 {
+          color: white;
+          font-size: 28px;
+          margin-bottom: 8px;
+        }
+        
+        p {
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 16px;
+        }
+      }
+      
+      .welcomeImage {
+        width: 150px;
+        height: 150px;
+        background-image: url('https://img.freepik.com/free-vector/dashboard-concept-illustration_114360-4345.jpg');
+        background-size: cover;
+        background-position: center;
+        border-radius: 12px;
+        animation: slideIn 1s ease-in-out;
+        z-index: 1;
+      }
+    }
+    
+    .widgets,
+    .charts {
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .charts {
+      padding: 5px 20px;
+    }
+
+    .listContainer {
+      -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.5);
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.08);
+      padding: 20px;
+      margin: 20px;
+      border-radius: 12px;
+
+      .listTitle {
+        font-weight: 500;
+        color: gray;
+        margin-bottom: 15px;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

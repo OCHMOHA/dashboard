@@ -1,0 +1,294 @@
+.navbar {
+  height: 50px;
+  border-bottom: 0.5px solid rgb(231, 228, 228);
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #555;
+
+  .wrapper {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .search {
+      display: flex;
+      align-items: center;
+      border: 0.5px solid lightgray;
+      padding: 3px 10px;
+      border-radius: 20px;
+      width: 300px;
+      position: relative;
+      transition: all 0.3s ease;
+
+      &:focus-within {
+        box-shadow: 0 0 0 2px rgba(100, 57, 255, 0.2);
+        border-color: #6439ff;
+      }
+
+      input {
+        border: none;
+        outline: none;
+        background: transparent;
+        width: 100%;
+        padding: 6px;
+        font-size: 14px;
+
+        &::placeholder {
+          font-size: 13px;
+          color: #999;
+        }
+      }
+
+      .searchIcon {
+        color: #888;
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      .clearIcon {
+        color: #aaa;
+        transition: color 0.2s;
+        
+        &:hover {
+          color: #555;
+        }
+      }
+
+      .searchResults {
+        position: absolute;
+        top: 40px;
+        left: 0;
+        width: 350px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+        max-height: 400px;
+        overflow-y: auto;
+        
+        .resultsHeader {
+          padding: 12px 16px;
+          border-bottom: 1px solid #eee;
+          font-weight: 500;
+          color: #333;
+        }
+        
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          
+          li {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            
+            &:hover {
+              background-color: #f5f5f5;
+            }
+            
+            .resultIcon {
+              margin-right: 12px;
+              font-size: 16px;
+            }
+            
+            .resultContent {
+              display: flex;
+              flex-direction: column;
+              
+              .resultName {
+                font-weight: 500;
+                color: #333;
+                margin-bottom: 2px;
+              }
+              
+              .resultType {
+                font-size: 12px;
+                color: #888;
+                text-transform: capitalize;
+              }
+            }
+          }
+        }
+        
+        .noResults {
+          padding: 16px;
+          text-align: center;
+          color: #777;
+          font-style: italic;
+        }
+      }
+    }
+
+    .items {
+      display: flex;
+      align-items: center;
+
+      .item {
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+        position: relative;
+
+        .icon {
+          font-size: 20px;
+        }
+
+        .avatar {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+        }
+
+        .counter {
+          width: 15px;
+          height: 15px;
+          background-color: red;
+          border-radius: 50%;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 10px;
+          font-weight: bold;
+          position: absolute;
+          top: -5px;
+          right: -5px;
+        }
+        
+        &.darkModeToggle {
+          cursor: pointer;
+          padding: 6px;
+          border-radius: 50%;
+          background-color: rgba(0, 0, 0, 0.05);
+          transition: all 0.3s ease;
+          
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            transform: scale(1.1);
+          }
+          
+          .icon {
+            color: #6439ff;
+          }
+        }
+        
+        &.userInfo {
+          background-color: rgba(100, 57, 255, 0.08);
+          padding: 6px 12px;
+          border-radius: 20px;
+          margin-right: 0;
+          
+          .icon {
+            color: #6439ff;
+            margin-right: 8px;
+          }
+          
+          .userName {
+            font-weight: 500;
+            color: #6439ff;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.dark .navbar {
+  .wrapper {
+    .search {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.1);
+      
+      &:focus-within {
+        box-shadow: 0 0 0 2px rgba(138, 112, 214, 0.3);
+        border-color: #8a70d6;
+      }
+      
+      input {
+        color: #f5f5f5;
+        
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.5);
+        }
+      }
+      
+      .searchIcon {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      
+      .clearIcon {
+        color: rgba(255, 255, 255, 0.4);
+        
+        &:hover {
+          color: rgba(255, 255, 255, 0.8);
+        }
+      }
+      
+      .searchResults {
+        background-color: #293845;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        
+        .resultsHeader {
+          border-bottom-color: rgba(255, 255, 255, 0.1);
+          color: #f5f5f5;
+        }
+        
+        ul li {
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+          }
+          
+          .resultContent {
+            .resultName {
+              color: #f5f5f5;
+            }
+            
+            .resultType {
+              color: rgba(255, 255, 255, 0.5);
+            }
+          }
+        }
+        
+        .noResults {
+          color: rgba(255, 255, 255, 0.5);
+        }
+      }
+    }
+
+    .items {
+      .item {
+        &.darkModeToggle {
+          background-color: rgba(255, 255, 255, 0.1);
+          
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+          }
+          
+          .icon {
+            color: #f5f5f5;
+          }
+        }
+        
+        &.userInfo {
+          background-color: rgba(138, 112, 214, 0.2);
+          
+          .icon {
+            color: #8a70d6;
+          }
+          
+          .userName {
+            color: #f5f5f5;
+          }
+        }
+      }
+    }
+  }
+}

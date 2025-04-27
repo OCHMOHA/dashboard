@@ -1,0 +1,53 @@
+// Color variables
+$main-bg: #f8f9fa;
+$soft-bg: #f0f2f5;
+$dark-bg: #2c3e50;
+$main-color: #1e272e;
+$soft-color: #656565;
+$dark-color: #222f3e;
+
+// Theme colors
+$blue: #3498db;
+$purple: #9b59b6;
+$green: #2ecc71;
+$red: #e74c3c;
+$orange: #f39c12;
+
+// Sizes
+$sm-bp: 576px;
+$md-bp: 768px;
+$lg-bp: 992px;
+$xl-bp: 1200px;
+
+// Shadows
+$box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.15);
+
+// CSS Variables
+:root {
+  --bgSoft: #f0f2f5;
+  --bg: #f8f9fa;
+  --shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.15);
+  --text: #1e272e;
+  --textSoft: #656565;
+  --textLink: #3498db;
+  --primary: #3498db;
+  --border: #ddd;
+}
+
+// Dark mode CSS variables
+.dark {
+  --bgSoft: #1e272e;
+  --bg: #141b2d;
+  --shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.5);
+  --text: #f8f9fa;
+  --textSoft: #ccc;
+  --textLink: #59a5e8;
+  --primary: #59a5e8;
+  --border: #333;
+  
+  // Additional dark mode specific variables
+  --accent-purple: #a78bfa;
+  --accent-green: #4ade80;
+  --hover-bg: #293845;
+  --chart-grid: rgba(255, 255, 255, 0.1);
+} 
