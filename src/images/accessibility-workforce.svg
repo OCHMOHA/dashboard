@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="200" height="200" rx="10" fill="#FFFFFF"/>
+  
+  <!-- Person in wheelchair -->
+  <circle cx="75" cy="60" r="20" fill="#6A4C93"/>
+  <path d="M75 80 L75 130" stroke="#6A4C93" stroke-width="6"/>
+  <path d="M75 90 L55 120" stroke="#6A4C93" stroke-width="6"/>
+  <path d="M75 90 L95 120" stroke="#6A4C93" stroke-width="6"/>
+  
+  <!-- Wheelchair -->
+  <circle cx="60" cy="140" r="12" fill="#4C9CF0" stroke="#1A1A1A" stroke-width="2"/>
+  <circle cx="100" cy="140" r="12" fill="#4C9CF0" stroke="#1A1A1A" stroke-width="2"/>
+  <path d="M60 140 L100 140 L90 110 L70 110 Z" fill="#4C9CF0" stroke="#1A1A1A" stroke-width="2"/>
+  <path d="M65 110 L65 95" stroke="#4C9CF0" stroke-width="4"/>
+  
+  <!-- Standing person -->
+  <circle cx="130" cy="60" r="20" fill="#1A1A1A"/>
+  <path d="M130 80 L130 130" stroke="#1A1A1A" stroke-width="6"/>
+  <path d="M130 90 L110 120" stroke="#1A1A1A" stroke-width="6"/>
+  <path d="M130 90 L150 120" stroke="#1A1A1A" stroke-width="6"/>
+  
+  <!-- Computer/Workspace -->
+  <rect x="40" y="160" width="120" height="10" rx="2" fill="#6A4C93"/>
+  <rect x="80" y="155" width="40" height="30" rx="2" fill="#4C9CF0"/>
+  
+  <!-- Connecting arm gesture -->
+  <path d="M95 100 L120 100" stroke="#1A1A1A" stroke-width="3"/>
+</svg> 

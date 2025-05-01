@@ -8,6 +8,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { FaCheck, FaTimes, FaEye, FaClock, FaCopy, FaSync } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import setPageTitle from "../../utils/titleUtils";
 
 const ChangeRequests = () => {
   const [requests, setRequests] = useState([]);
@@ -23,7 +24,7 @@ const ChangeRequests = () => {
   const [showCopyToast, setShowCopyToast] = useState(false);
 
   useEffect(() => {
-    document.title = "Change Requests | Admin Dashboard";
+    setPageTitle();
     fetchChangeRequests();
   }, []);
 
@@ -101,15 +102,7 @@ const ChangeRequests = () => {
 
   const formatDate = (date) => {
     if (!date) return "Unknown";
-    
-    return new Intl.DateTimeFormat('en-US', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      timeZoneName: 'short'
-    }).format(date);
+    return date.toLocaleString();
   };
 
   const copyToClipboard = (text, id) => {
@@ -153,6 +146,12 @@ const ChangeRequests = () => {
     setShowDetailModal(true);
   };
 
+  const handleModalClick = (e) => {
+    if (e.target === e.currentTarget) {
+      setShowDetailModal(false);
+    }
+  };
+
   const columns = [
     { 
       field: "id", 
@@ -169,7 +168,7 @@ const ChangeRequests = () => {
           }}
           title="Click to copy all IDs"
         >
-          <span className="requestId">-{params.row.id.substring(0, 16)}...</span>
+          <span className="requestId">{params.row.id.replace(/^-+/, '').substring(0, 7)}</span>
           <FaCopy className="copyIcon" />
           {copyFeedback.id === params.row.id && copyFeedback.copied && (
             <span className="inlineCopyIndicator">Copied!</span>
@@ -192,7 +191,7 @@ const ChangeRequests = () => {
           }}
           title="Click to copy User ID"
         >
-          <span className="userId">-{params.row.userId.substring(0, 16)}...</span>
+          <span className="userId">{params.row.userId.replace(/^-+/, '').substring(0, 7)}</span>
           <FaCopy className="copyIcon" />
           {copyFeedback.id === `user-${params.row.id}` && copyFeedback.copied && (
             <span className="inlineCopyIndicator">Copied!</span>
@@ -284,100 +283,90 @@ const ChangeRequests = () => {
             </button>
           </div>
           
-          <div className="tabsAndTableWrapper">
-            <div className="tabContainer">
-              <button 
-                className={`tab ${activeTab === "all" ? "active" : ""}`}
-                onClick={() => setActiveTab("all")}
-              >
-                All Requests
-              </button>
-              <button 
-                className={`tab ${activeTab === "pending" ? "active" : ""}`}
-                onClick={() => setActiveTab("pending")}
-              >
-                Pending
-              </button>
-              <button 
-                className={`tab ${activeTab === "approved" ? "active" : ""}`}
-                onClick={() => setActiveTab("approved")}
-              >
-                Approved
-              </button>
-              <button 
-                className={`tab ${activeTab === "rejected" ? "active" : ""}`}
-                onClick={() => setActiveTab("rejected")}
-              >
-                Rejected
-              </button>
+          <div className="tabs">
+            <div 
+              className={`tab ${activeTab === "all" ? "active" : ""}`}
+              onClick={() => setActiveTab("all")}
+            >
+              All Requests
             </div>
-            
-            <div className="tableWrapper">
-              <div className="tableHeader">
-                <div className="allRequests">
-                  {activeTab === "all" ? "All Requests" : 
-                    activeTab === "pending" ? "Pending Requests" : 
-                    activeTab === "approved" ? "Approved Requests" : 
-                    "Rejected Requests"}
-                </div>
-              </div>
-              
-              <div className="tableContent">
-                <DataGrid
-                  rows={filteredRequests}
-                  columns={columns}
-                  pageSize={10}
-                  rowsPerPageOptions={[10, 20, 50]}
-                  checkboxSelection
-                  disableSelectionOnClick
-                  disableColumnFilter
-                  loading={loading}
-                  className="dataGrid"
-                  getRowClassName={(params) => `row-status-${params.row.status}`}
-                  autoHeight
-                  sortingMode="server"
-                  components={{
-                    Pagination: () => null,
-                  }}
-                  sx={{
-                    '& .MuiDataGrid-cell:focus': {
-                      outline: 'none',
-                    },
-                    '& .MuiDataGrid-row.Mui-selected': {
-                      backgroundColor: 'transparent',
-                    },
-                    '& .MuiDataGrid-row:focus': {
-                      outline: 'none',
-                    },
-                    '& .MuiDataGrid-cell.Mui-selected': {
-                      backgroundColor: 'transparent',
-                      outline: 'none',
-                    },
-                    '& .MuiDataGrid-columnHeader:focus': {
-                      outline: 'none',
-                    },
-                    '& .MuiDataGrid-columnHeader:focus-within': {
-                      outline: 'none',
-                    },
-                    '& .MuiDataGrid-columnHeader.Mui-focused': {
-                      outline: 'none',
-                    },
-                    '& .MuiDataGrid-columnHeaderTitle': {
-                      fontWeight: '600',
-                    }
-                  }}
-                />
-              </div>
+            <div 
+              className={`tab ${activeTab === "pending" ? "active" : ""}`}
+              onClick={() => setActiveTab("pending")}
+            >
+              Pending
             </div>
+            <div 
+              className={`tab ${activeTab === "approved" ? "active" : ""}`}
+              onClick={() => setActiveTab("approved")}
+            >
+              Approved
+            </div>
+            <div 
+              className={`tab ${activeTab === "rejected" ? "active" : ""}`}
+              onClick={() => setActiveTab("rejected")}
+            >
+              Rejected
+            </div>
+          </div>
+          
+          <div className="dataGridContainer">
+            <DataGrid
+              rows={filteredRequests}
+              columns={columns}
+              pageSize={10}
+              rowsPerPageOptions={[10, 20, 50]}
+              checkboxSelection
+              disableSelectionOnClick
+              disableColumnFilter
+              loading={loading}
+              className="dataGrid"
+              getRowClassName={(params) => `row-status-${params.row.status}`}
+              autoHeight
+              sortingMode="server"
+              components={{
+                Pagination: () => null,
+              }}
+              sx={{
+                '& .MuiDataGrid-cell:focus': {
+                  outline: 'none',
+                },
+                '& .MuiDataGrid-row.Mui-selected': {
+                  backgroundColor: 'transparent',
+                },
+                '& .MuiDataGrid-row:focus': {
+                  outline: 'none',
+                },
+                '& .MuiDataGrid-cell.Mui-selected': {
+                  backgroundColor: 'transparent',
+                  outline: 'none',
+                },
+                '& .MuiDataGrid-columnHeader:focus': {
+                  outline: 'none',
+                },
+                '& .MuiDataGrid-columnHeader:focus-within': {
+                  outline: 'none',
+                },
+                '& .MuiDataGrid-columnHeader.Mui-focused': {
+                  outline: 'none',
+                },
+                '& .MuiDataGrid-columnHeaderTitle': {
+                  fontWeight: '600',
+                }
+              }}
+            />
           </div>
         </div>
         
         {showDetailModal && selectedRequest && (
-          <div className="detailModal">
+          <div className="detailModal" onClick={handleModalClick}>
             <div className="modalContent">
               <button 
                 className="closeButton"
-                onClick={() => setShowDetailModal(false)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowDetailModal(false);
+                }}
               >
                 ×
               </button>
@@ -427,7 +416,8 @@ const ChangeRequests = () => {
               <div className="modalActions">
                 <button
                   className="deleteButton"
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation();
                     handleDeleteRequest(selectedRequest.id);
                     setShowDetailModal(false);
                   }}
@@ -436,7 +426,10 @@ const ChangeRequests = () => {
                 </button>
                 <button
                   className="backButton"
-                  onClick={() => setShowDetailModal(false)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowDetailModal(false);
+                  }}
                 >
                   Back
                 </button>

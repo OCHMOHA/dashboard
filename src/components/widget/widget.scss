@@ -44,16 +44,14 @@
     }
 
     .link {
-      font-size: 14px;
-      border-bottom: 1px solid #6f42c1;
       width: max-content;
-      color: #6f42c1;
+      font-size: 12px;
+      border-bottom: 1px solid var(--primary, #6439ff);
       cursor: pointer;
-      transition: all 0.2s;
+      transition: color 0.2s ease;
       
       &:hover {
-        color: #5e35b1;
-        transform: translateX(5px);
+        color: var(--primary, #6439ff);
       }
     }
   }

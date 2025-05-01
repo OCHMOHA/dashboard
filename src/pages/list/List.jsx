@@ -1,18 +1,26 @@
 import "./list.scss"
 import Sidebar from "../../components/sidebar/Sidebar"
 import Navbar from "../../components/navbar/Navbar"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import WorkersDatatable from "../../components/datatable/WorkersDatatable"
 import ClientsDatatable from "../../components/datatable/ClientsDatatable"
-import { Link } from "react-router-dom"
 
 const List = () => {
   const [activeTab, setActiveTab] = useState("workers");
   
+  // Check localStorage on component mount to see if we need to switch tabs
+  useEffect(() => {
+    const userType = localStorage.getItem('userType');
+    if (userType) {
+      setActiveTab(userType === 'worker' ? 'workers' : 'clients');
+      // No need to remove the viewUserId as each datatable component will handle that
+    }
+  }, []);
+  
   return (
     <div className="list">
       <Sidebar/>
-      <div className="listContainer">
+      <div className="usersContainer">
         <Navbar/>
         <div className="content">
           <div className="tabs">
@@ -28,15 +36,6 @@ const List = () => {
             >
               Clients
             </div>
-          </div>
-          
-          <div className="header">
-            <h1>
-              {activeTab === "workers" ? "Workers" : "Clients"}
-            </h1>
-            <Link to="/users/new" className="createButton">
-              Add New User
-            </Link>
           </div>
           
           {activeTab === "workers" ? <WorkersDatatable /> : <ClientsDatatable />}

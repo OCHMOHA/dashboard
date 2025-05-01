@@ -11,11 +11,13 @@
   
   &.loading {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 400px;
     color: var(--textSoft);
     font-style: italic;
+    gap: 15px;
   }
   
   .title {
@@ -45,6 +47,53 @@
     // Ensure legend text is visible
     .recharts-legend-item-text {
       color: var(--text);
+      cursor: pointer;
+      transition: font-weight 0.2s;
+      
+      &:hover {
+        font-weight: 600;
+      }
+    }
+    
+    .recharts-sector {
+      transition: all 0.3s ease;
+    }
+  }
+  
+  .customTooltip {
+    background-color: var(--bg);
+    border-radius: 6px;
+    padding: 0;
+    min-width: 180px;
+    overflow: hidden;
+    
+    .tooltipHeader {
+      padding: 8px 12px;
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    
+    .tooltipBody {
+      padding: 0 12px 10px;
+      
+      .tooltipRow {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 6px;
+        
+        .tooltipLabel {
+          color: var(--textSoft);
+          font-size: 13px;
+        }
+        
+        .tooltipValue {
+          color: var(--text);
+          font-weight: 500;
+          font-size: 13px;
+        }
+      }
     }
   }
   
@@ -66,10 +115,16 @@
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
       transition: all 0.2s ease;
       cursor: pointer;
+      border-left: 3px solid transparent;
       
-      &:hover {
+      &:hover, &.active {
         transform: translateY(-2px);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      
+      &.active {
+        border-left-color: inherit;
+        background-color: var(--hover-bg);
       }
       
       .serviceInfo {
@@ -81,11 +136,25 @@
           width: 16px;
           height: 16px;
           border-radius: 4px;
+          transition: transform 0.2s ease;
         }
         
         .name {
           font-weight: 500;
           color: var(--text);
+          transition: font-weight 0.2s ease;
+        }
+      }
+      
+      &:hover, &.active {
+        .serviceInfo {
+          .colorBox {
+            transform: scale(1.2);
+          }
+          
+          .name {
+            font-weight: 600;
+          }
         }
       }
       
@@ -129,6 +198,10 @@
       .recharts-text {
         fill: var(--textSoft);
       }
+      
+      .recharts-legend-item-text {
+        fill: var(--text);
+      }
     }
     
     .serviceSummary {
@@ -136,7 +209,7 @@
         background-color: var(--bgSoft);
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         
-        &:hover {
+        &:hover, &.active {
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
           background-color: var(--hover-bg);
         }
@@ -145,6 +218,11 @@
     
     .chartInfo {
       background-color: var(--bgSoft);
+    }
+    
+    // Dark mode active shape styles
+    .recharts-active-shape text {
+      fill: var(--text) !important;
     }
   }
 } 

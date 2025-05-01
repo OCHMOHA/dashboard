@@ -29,6 +29,7 @@ import BackupSettings from './sections/BackupSettings';
 import SystemSettings from './sections/SystemSettings';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 import { useLocation, useNavigate } from 'react-router-dom';
+import setPageTitle from '../../utils/titleUtils';
 
 const Settings = () => {
   const { darkMode, dispatch } = useContext(DarkModeContext);
@@ -65,13 +66,13 @@ const Settings = () => {
     setActiveTab(getTabFromUrl());
   }, [location.search]);
   
+  useEffect(() => {
+    setPageTitle();
+  }, []);
+  
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
-  
-  useEffect(() => {
-    document.title = 'Settings | Admin Dashboard';
-  }, []);
   
   const handleSave = async () => {
     if (authUser?.uid) {

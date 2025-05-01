@@ -5,11 +5,13 @@ export const orderColumns = [
     field: "id", 
     headerName: "Order ID", 
     width: 180,
+    sortable: true,
+    disableColumnMenu: false,
     renderCell: (params) => {
       // Create a unique ID for this cell to track copy state
       const cellId = `order-${params.id}`;
-      // Format the ID: add a dash prefix and truncate with ellipsis
-      const formattedId = `-${params.value.substring(0, 16)}...`;
+      // Get the first 7 characters, removing any leading dashes
+      const displayId = params.value.replace(/^-+/, '').substring(0, 7);
       
       return (
         <div 
@@ -31,9 +33,9 @@ export const orderColumns = [
                 console.error('Failed to copy order ID: ', err);
               });
           }}
-          title="Click to copy Order ID"
+          title="Click to copy full Order ID"
         >
-          <span className="orderId">{formattedId}</span>
+          <span className="orderId">{displayId}</span>
           <FaCopy className="copyIcon" />
           <span className={`inlineCopyIndicator copyIndicator-${cellId}`} style={{ display: 'none' }}>
             Copied!
@@ -46,6 +48,8 @@ export const orderColumns = [
     field: "clientName",
     headerName: "Client",
     width: 200,
+    sortable: false,
+    disableColumnMenu: true,
     renderCell: (params) => {
       return (
         <div className="cellWithImg">
@@ -63,6 +67,8 @@ export const orderColumns = [
     field: "workerName",
     headerName: "Worker",
     width: 200,
+    sortable: false,
+    disableColumnMenu: true,
     renderCell: (params) => {
       return (
         <div className="cellWithImg">
@@ -80,16 +86,22 @@ export const orderColumns = [
     field: "serviceNameKey",
     headerName: "Service",
     width: 150,
+    sortable: false,
+    disableColumnMenu: true,
   },
   {
     field: "serviceTypeKey",
     headerName: "Service Type",
     width: 150,
+    sortable: false,
+    disableColumnMenu: true,
   },
   {
     field: "price",
     headerName: "Price",
     width: 100,
+    sortable: false,
+    disableColumnMenu: true,
     renderCell: (params) => {
       return (
         <div className="cellWithPrice">
@@ -102,6 +114,8 @@ export const orderColumns = [
     field: "scheduledDate",
     headerName: "Scheduled Date",
     width: 180,
+    sortable: false,
+    disableColumnMenu: true,
     valueGetter: (params) => {
       if (!params.row.scheduledDate) return "Not scheduled";
       const date = new Date(params.row.scheduledDate);
@@ -112,6 +126,8 @@ export const orderColumns = [
     field: "createdAt",
     headerName: "Created At",
     width: 180,
+    sortable: false,
+    disableColumnMenu: true,
     valueGetter: (params) => {
       if (!params.row.createdAt) return "Unknown";
       const date = new Date(params.row.createdAt);
@@ -122,6 +138,8 @@ export const orderColumns = [
     field: "status",
     headerName: "Status",
     width: 130,
+    sortable: false,
+    disableColumnMenu: true,
     renderCell: (params) => {
       return (
         <div className={`cellWithStatus ${params.row.status}`}>
@@ -134,6 +152,8 @@ export const orderColumns = [
     field: "isEmergency",
     headerName: "Emergency",
     width: 120,
+    sortable: false,
+    disableColumnMenu: true,
     renderCell: (params) => {
       return (
         <div className={`cellWithEmergency ${params.row.isEmergency ? "yes" : "no"}`}>
@@ -146,6 +166,8 @@ export const orderColumns = [
     field: "hasVideo",
     headerName: "Has Video",
     width: 120,
+    sortable: false,
+    disableColumnMenu: true,
     renderCell: (params) => {
       return (
         <div className={`cellWithFeature ${params.row.hasVideo ? "yes" : "no"}`}>
@@ -158,6 +180,8 @@ export const orderColumns = [
     field: "hasVoiceMessage",
     headerName: "Voice Message",
     width: 140,
+    sortable: false,
+    disableColumnMenu: true,
     renderCell: (params) => {
       return (
         <div className={`cellWithFeature ${params.row.hasVoiceMessage ? "yes" : "no"}`}>

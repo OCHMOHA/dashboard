@@ -12,161 +12,140 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     
     h2 {
-      font-size: 20px;
+      font-size: 22px;
+      font-weight: 600;
       color: var(--textSoft);
-    }
-
-    .range {
-      display: flex;
-      gap: 10px;
-
-      button {
-        border: none;
-        padding: 5px 10px;
-        border-radius: 5px;
-        background-color: var(--bgSoft);
-        color: var(--textSoft);
-        cursor: pointer;
-        transition: all 0.3s ease;
-
-        &.active, &:hover {
-          background-color: var(--primary);
-          color: white;
-        }
-      }
     }
   }
 
-  .chartInfo {
+  .statsCards {
     display: flex;
+    flex-direction: column;
     gap: 20px;
     
-    @include lg {
-      flex-direction: column;
-    }
-
-    .chart {
-      flex: 3;
-      height: 300px;
+    .widget {
+      height: 120px;
       background-color: var(--bgSoft);
-      border-radius: 10px;
-      padding: 20px;
-      transition: all 0.3s ease;
-    }
-
-    .stats {
-      flex: 1;
       display: flex;
-      flex-direction: column;
       justify-content: space-between;
-      gap: 10px;
-
-      @include lg {
-        flex-direction: row;
-        gap: 20px;
-      }
-
-      @include md {
-        flex-direction: column;
-      }
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
       
-      .item {
-        padding: 20px;
-        border-radius: 10px;
-        background-color: var(--bgSoft);
+      .left {
         display: flex;
         flex-direction: column;
-        gap: 10px;
-        transition: all 0.3s ease;
-
-        @include lg {
-          width: 100%;
-        }
-
-        .itemTitle {
+        justify-content: space-between;
+        
+        .title {
           font-size: 14px;
+          font-weight: 500;
           color: var(--textSoft);
+          margin-bottom: 0;
         }
-
-        .itemValue {
-          font-size: 24px;
+        
+        .counter {
+          font-size: 28px;
           font-weight: 600;
           color: var(--text);
         }
-
-        .itemPercentage {
-          font-size: 14px;
-          font-weight: 500;
+        
+        .link {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          
+          .percentage {
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            
+            &.positive {
+              color: $green;
+              
+              &::before {
+                content: "↑";
+                margin-right: 4px;
+              }
+            }
+            
+            &.negative {
+              color: $red;
+              
+              &::before {
+                content: "↓";
+                margin-right: 4px;
+              }
+            }
+          }
+          
+          .text {
+            font-size: 12px;
+            color: var(--textSoft);
+          }
+        }
+      }
+      
+      .right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        .percentage {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
           
           &.positive {
+            background-color: rgba($green, 0.15);
             color: $green;
           }
           
           &.negative {
+            background-color: rgba($red, 0.15);
             color: $red;
           }
+          
+          svg {
+            font-size: 24px;
+          }
         }
-
-        .itemDesc {
-          font-size: 12px;
-          color: var(--textSoft);
+      }
+      
+      // Widget-specific styling
+      &:nth-child(1) {
+        .right .percentage.positive {
+          background-color: rgba(#8884d8, 0.15);
+          color: #8884d8;
         }
       }
-    }
-  }
-
-  .custom-tooltip {
-    background-color: var(--bgSoft);
-    border: 1px solid var(--border);
-    padding: 10px;
-    border-radius: 5px;
-    color: var(--text);
-    
-    .label {
-      margin-bottom: 5px;
-      font-weight: 600;
-      padding-bottom: 5px;
-      border-bottom: 1px solid var(--border);
-    }
-    
-    .entry {
-      display: flex;
-      align-items: center;
-      margin: 5px 0;
       
-      .color-indicator {
-        width: 12px;
-        height: 12px;
-        margin-right: 8px;
-        border-radius: 2px;
+      &:nth-child(2) {
+        .right .percentage.positive {
+          background-color: rgba(#82ca9d, 0.15);
+          color: #82ca9d;
+        }
       }
       
-      .label {
-        border: none;
-        padding: 0;
-        margin: 0;
-        font-weight: normal;
-        margin-right: 5px;
-      }
-      
-      .value {
-        font-weight: 600;
+      &:nth-child(3) {
+        .right .percentage.negative {
+          background-color: rgba(#ffc658, 0.15);
+          color: #ffc658;
+        }
       }
     }
   }
 }
 
-.dark {
-  .usersAnalysis {
-    .recharts-cartesian-axis-tick-value {
-      fill: var(--textSoft);
-    }
-    
-    .recharts-tooltip-cursor {
-      fill: rgba(255, 255, 255, 0.1);
-    }
-  }
+/* Dark mode specific styles */
+.dark .usersAnalysis .item {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 } 

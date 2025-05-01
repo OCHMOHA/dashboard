@@ -4,23 +4,12 @@ import "./home.scss";
 import Widget from "../../components/widget/Widget";
 import UsersAnalysis from "../../components/usersAnalysis/UsersAnalysis";
 import OrderAnalytics from "../../components/orderAnalytics/OrderAnalytics";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import workteamImage from "../../images/workteam.jpg";
 
 const Home = () => {
   const { currentUser } = useContext(AuthContext);
-  const [greeting, setGreeting] = useState("");
-  
-  useEffect(() => {
-    const getGreeting = () => {
-      const hour = new Date().getHours();
-      if (hour < 12) return "Good Morning";
-      if (hour < 18) return "Good Afternoon";
-      return "Good Evening";
-    };
-    
-    setGreeting(getGreeting());
-  }, []);
   
   return (
     <div className="home">
@@ -30,10 +19,12 @@ const Home = () => {
         
         <div className="welcomeBanner">
           <div className="welcomeContent">
-            <h1>{greeting}, {currentUser?.displayName || 'Admin'}</h1>
+            <h1>Good Day, {currentUser?.displayName || 'Admin'}</h1>
             <p>Welcome to your Mihnati dashboard</p>
           </div>
-          <div className="welcomeImage"></div>
+          <div className="welcomeImageContainer">
+            <img src={workteamImage} alt="Team collaboration" className="welcomeImage" />
+          </div>
         </div>
         
         <div className="widgets">
